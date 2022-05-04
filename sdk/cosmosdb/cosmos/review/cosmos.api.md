@@ -395,7 +395,7 @@ export const Constants: {
         IsBatchRequest: string;
         IsBatchAtomic: string;
         BatchContinueOnError: string;
-        dedicatedGatewayPerRequestCacheStaleness: string;
+        DedicatedGatewayPerRequestCacheStaleness: string;
         ForceRefresh: string;
     };
     WritableLocations: string;
@@ -674,7 +674,7 @@ export enum DataType {
 
 // @public
 export interface DedicatedGatewayRequestOptions {
-    maxIntegratedCacheStaleness?: number;
+    maxIntegratedCacheStalenessInMs?: number;
 }
 
 // @public (undocumented)
@@ -737,7 +737,7 @@ export type ExistingKeyOperation = {
 export function extractPartitionKey(document: unknown, partitionKeyDefinition: PartitionKeyDefinition): PartitionKey[];
 
 // @public
-export interface FeedOptions extends SharedOptions {
+export interface FeedOptions extends SharedOptions, DedicatedGatewayRequestOptions {
     accessCondition?: {
         type: string;
         condition: string;

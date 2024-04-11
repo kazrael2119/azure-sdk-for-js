@@ -18,7 +18,8 @@ export interface AssetResourceOutputParent {
   createdDate?: string;
   /** The date this asset was last updated for this workspace. */
   updatedDate?: string;
-  state?: AssetStateOutput;
+  /** Possible values: "candidate", "confirmed", "dismissed", "candidateInvestigate", "associatedPartner", "associatedThirdparty", "archived" */
+  state?: string;
   /** An optional customer provided identifier for this asset. */
   externalId?: string;
   /** Customer labels assigned to this asset. */
@@ -41,8 +42,12 @@ export interface AuditTrailItemOutput {
   name?: string;
   /** The name that can be used for display purposes. */
   displayName?: string;
-  /** The kind of asset. */
-  kind?: AuditTrailItemKindOutput;
+  /**
+   * The kind of asset.
+   *
+   * Possible values: "as", "contact", "domain", "host", "ipAddress", "ipBlock", "page", "sslCert"
+   */
+  kind?: string;
   /** An explanation of why this audit trail node was discovered from the previous node. */
   reason?: string;
 }
@@ -124,7 +129,8 @@ export interface ObservedHeaderOutput extends ObservedValueOutput {
 }
 
 export interface ObservedPortStateOutput extends ObservedValueOutput {
-  value?: ObservedPortStateValueOutput;
+  /** Possible values: "open", "closed", "filtered" */
+  value?: string;
   port?: number;
 }
 
@@ -304,7 +310,8 @@ export interface SslCertAssetOutput extends InventoryAssetOutput {
   selfSigned?: boolean;
   sigAlgOid?: string;
   recent?: boolean;
-  validationType?: SslCertAssetValidationTypeOutput;
+  /** Possible values: "domainValidation", "organizationValidation", "extendedValidation" */
+  validationType?: string;
 }
 
 export interface HostCoreOutput {
@@ -610,7 +617,8 @@ export interface PageAssetOutput extends InventoryAssetOutput {
   cause?: PageCauseOutput;
   referrer?: string;
   redirectUrls?: Array<ObservedStringOutput>;
-  redirectType?: PageAssetRedirectTypeOutput;
+  /** Possible values: "httpHeader", "metaRefresh", "javascript", "final" */
+  redirectType?: string;
   finalUrls?: Array<ObservedStringOutput>;
   finalResponseCodes?: Array<ObservedIntegerOutput>;
   parkedPage?: Array<ObservedBooleanOutput>;
@@ -687,8 +695,7 @@ export interface HostAssetResourceOutput extends AssetResourceOutputParent {
   asset: HostAssetOutput;
 }
 
-export interface IpAddressAssetResourceOutput
-  extends AssetResourceOutputParent {
+export interface IpAddressAssetResourceOutput extends AssetResourceOutputParent {
   /** The kind of AssetResource */
   kind: "ipAddress";
   /** asset */
@@ -725,10 +732,18 @@ export interface TaskOutput {
   completedAt?: string;
   /** The last time the status of the task was updated. */
   lastPolledAt?: string;
-  /** The state the task is in. */
-  state?: TaskStateOutput;
-  /** The phase the task is in. */
-  phase?: TaskPhaseOutput;
+  /**
+   * The state the task is in.
+   *
+   * Possible values: "pending", "running", "paused", "complete", "incomplete", "failed", "warning"
+   */
+  state?: string;
+  /**
+   * The phase the task is in.
+   *
+   * Possible values: "running", "polling", "complete"
+   */
+  phase?: string;
   /** The reason the task was moved into its current state, if the task wasn't completed. */
   reason?: string;
   /** Attributes unique to the task.  This differs by task type. */
@@ -739,52 +754,61 @@ export interface TypeSpecRecordOutput extends Record<string, any> {}
 
 export interface AzureCoreTraitsOutput {}
 
-export interface ObservationPageResultOutput {
+export interface ObservationPageResponseOutput {
   totalElements: number;
   prioritySummary: TypeSpecRecordOutput;
-  value: Array<ObservationResultOutput>;
+  value: Array<ObservationResponseOutput>;
 }
 
 export interface TypeSpecRecordOutput extends Record<string, number> {}
 
-export interface ObservationResultOutput {
+export interface ObservationResponseOutput {
   name: string;
-  type: ObservationTypeOutput[];
-  priority: ObservationPriorityOutput;
+  type: string[];
+  /** Possible values: 3, 2, 1, 0 */
+  priority: string;
   cvssScoreV2: number;
   cvssScoreV3: number;
 }
 
-export interface DeltaPageResultOutput {
+export interface DeltaPageResponseOutput {
   /** The total number of items available in the full result set. */
   totalElements?: number;
   /** The link to access the next page of results.  Not set if at the end of the result set. */
   nextLink?: string;
   /** The items in the current page of results. */
-  value?: Array<DeltaResultOutput>;
+  value?: Array<DeltaResponseOutput>;
 }
 
-export interface DeltaResultOutput {
-  /** Shows the asset kind */
-  kind: GlobalAssetTypeOutput;
+export interface DeltaResponseOutput {
+  /**
+   * Shows the asset kind
+   *
+   * Possible values: "page", "resource", "mailServer", "nameServer", "host", "domain", "ipAddress", "ipBlock", "as", "contact", "sslCert"
+   */
+  kind: string;
   /** Shows the asset name */
   name: string;
   /** Shows the date when the asset was originally created */
   createdAt: string;
   /** Shows the date when the asset was last updated, usually the date the we trying to pull up the results for */
   updatedAt: string;
-  /** Shows the inventory state */
-  state: GlobalInventoryStateOutput;
+  /**
+   * Shows the inventory state
+   *
+   * Possible values: "candidate", "candidateInvestigate", "confirmed", "associated", "associatedPartner", "associatedThirdParty", "archived", "dismissed", "autoconfirmed"
+   */
+  state: string;
 }
 
-export interface DeltaSummaryResultOutput {
+export interface DeltaSummaryResponseOutput {
   /** Contains added, removed, and difference values for the whole range either 7 or 30 days */
-  summary: DeltaRangeResultOutput;
+  summary: DeltaRangeResponseOutput;
   /** Contains added, removed, count, and difference values for each day */
-  daily: Array<DeltaDateResultOutput>;
+  daily: Array<DeltaDateResponseOutput>;
 }
 
-export interface DeltaRangeResultOutput {
+export interface DeltaRangeResponseOutput {
   /** The range of dates requested */
   range: number;
   /** The total amount of assets removed over a date range */
@@ -798,8 +822,12 @@ export interface DeltaRangeResultOutput {
 }
 
 export interface DeltaTypeResponseOutput {
-  /** The kind of asset */
-  kind: GlobalAssetTypeOutput;
+  /**
+   * The kind of asset
+   *
+   * Possible values: "page", "resource", "mailServer", "nameServer", "host", "domain", "ipAddress", "ipBlock", "as", "contact", "sslCert"
+   */
+  kind: string;
   /** The amount of assets removed for one asset kind */
   removed: number;
   /** The amount of assets added for one asset kind */
@@ -813,7 +841,7 @@ export interface DailyDeltaTypeResponseOutput extends DeltaTypeResponseOutput {
   count: number;
 }
 
-export interface DeltaDateResultOutput {
+export interface DeltaDateResponseOutput {
   /** The date that is being requested */
   date: string;
   /** A list of summary counts per day */
@@ -827,12 +855,20 @@ export interface DataConnectionOutputParent {
   readonly name: string;
   /** The name that can be used for display purposes. */
   displayName?: string;
-  /** The type of data the data connection will transfer */
-  content?: DataConnectionContentOutput;
+  /**
+   * The type of data the data connection will transfer
+   *
+   * Possible values: "assets", "attackSurfaceInsights"
+   */
+  content?: string;
   /** The date the data connection was created. */
   readonly createdDate?: string;
-  /** The rate at which the data connection will receive updates. */
-  frequency?: DataConnectionFrequencyOutput;
+  /**
+   * The rate at which the data connection will receive updates.
+   *
+   * Possible values: "daily", "weekly", "monthly"
+   */
+  frequency?: string;
   /** The day to update the data connection on. */
   frequencyOffset?: number;
   /** The date the data connection was last updated. */
@@ -846,16 +882,14 @@ export interface DataConnectionOutputParent {
   kind: string;
 }
 
-export interface LogAnalyticsDataConnectionOutput
-  extends DataConnectionOutputParent {
+export interface LogAnalyticsDataConnectionOutput extends DataConnectionOutputParent {
   /** The kind of DataConnection */
   kind: "logAnalytics";
   /** properties */
   properties: LogAnalyticsDataConnectionPropertiesOutput;
 }
 
-export interface LogAnalyticsDataConnectionPropertiesOutput
-  extends DataConnectionPropertiesOutput {
+export interface LogAnalyticsDataConnectionPropertiesOutput extends DataConnectionPropertiesOutput {
   /** log analytics api key */
   apiKey?: string;
   /** log analytics workspace id */
@@ -875,8 +909,7 @@ export interface AzureDataExplorerDataConnectionPropertiesOutput
   databaseName?: string;
 }
 
-export interface AzureDataExplorerDataConnectionOutput
-  extends DataConnectionOutputParent {
+export interface AzureDataExplorerDataConnectionOutput extends DataConnectionOutputParent {
   /** The kind of DataConnection */
   kind: "azureDataExplorer";
   /** properties */
@@ -940,8 +973,12 @@ export interface DiscoGroupOutput {
 
 /** Source entity used to drive discovery. */
 export interface DiscoSourceOutput {
-  /** The kind of disco source. */
-  kind?: DiscoSourceKindOutput;
+  /**
+   * The kind of disco source.
+   *
+   * Possible values: "as", "attribute", "contact", "domain", "host", "ipBlock"
+   */
+  kind?: string;
   /** The name for the disco source. */
   name?: string;
 }
@@ -956,8 +993,12 @@ export interface DiscoRunResultOutput {
   completedDate?: string;
   /** The tier which will affect the algorithm used for the disco run. */
   tier?: string;
-  /** The State of the disco run. */
-  state?: DiscoRunStateOutput;
+  /**
+   * The State of the disco run.
+   *
+   * Possible values: "pending", "running", "completed", "failed"
+   */
+  state?: string;
   /** The total count of assets that were found this disco run. */
   totalAssetsFoundCount?: number;
   /** The list of seeds used for the disco run. */
@@ -978,25 +1019,29 @@ export interface DiscoRunPageResultOutput {
 }
 
 /** Response for the asset chain summary. */
-export interface AssetChainSummaryResultOutput {
+export interface AssetChainSummaryResponseOutput {
   /** A list of asset chain summaries per asset kind */
-  affectedAssetsSummary: Array<AssetChainKindSummaryResultOutput>;
+  affectedAssetsSummary: Array<AssetChainKindSummaryResponseOutput>;
   /** A list of disco group summaries */
-  affectedGroupsSummary: Array<DiscoGroupSummaryResultOutput>;
+  affectedGroupsSummary: Array<DiscoGroupSummaryResponseOutput>;
   /** The list of exceptions */
   errors?: Array<ErrorResponse>;
 }
 
 /** A list of asset chain summaries per asset kind */
-export interface AssetChainKindSummaryResultOutput {
-  /** The kind of asset */
-  kind: AssetKindOutput;
+export interface AssetChainKindSummaryResponseOutput {
+  /**
+   * The kind of asset
+   *
+   * Possible values: "as", "contact", "domain", "host", "ipAddress", "ipBlock", "page", "sslCert"
+   */
+  kind: string;
   /** The amount of assets affected for a given asset kind */
   affectedCount: number;
 }
 
 /** A list of disco group summaries */
-export interface DiscoGroupSummaryResultOutput {
+export interface DiscoGroupSummaryResponseOutput {
   /** The system generated unique id for the resource. */
   id: string;
   /** The caller provided unique name for the resource. */
@@ -1044,8 +1089,12 @@ export interface ReportBillableAssetSnapshotResultOutput {
 
 /** The breakdown of billable asset counts for each asset type. */
 export interface ReportBillableAssetBreakdownOutput {
-  /** The kind of billable asset. */
-  kind?: ReportBillableAssetBreakdownKindOutput;
+  /**
+   * The kind of billable asset.
+   *
+   * Possible values: "domain", "host", "ipAddress"
+   */
+  kind?: string;
   /** The number of assets of this type. */
   count?: number;
 }
@@ -1119,7 +1168,7 @@ export interface SavedFilterOutput {
 }
 
 /** cisa cve in a given workspace. */
-export interface CisaCveResultOutput {
+export interface CisaCveResponseOutput {
   /** The CVE ID of the vulnerability in the format CVE-YYYY-NNNN, note that the number portion can have more than 4 digits. */
   readonly cveId: string;
   /** The vendor or project name for the vulnerability. */
@@ -1159,149 +1208,17 @@ export type DataConnectionOutput =
   | DataConnectionOutputParent
   | LogAnalyticsDataConnectionOutput
   | AzureDataExplorerDataConnectionOutput;
-/** Alias for AssetUpdateStateOutput */
-export type AssetUpdateStateOutput =
-  | string
-  | "candidate"
-  | "confirmed"
-  | "dismissed"
-  | "candidateInvestigate"
-  | "associatedPartner"
-  | "associatedThirdparty";
-/** Alias for AssetStateOutput */
-export type AssetStateOutput = string | AssetUpdateStateOutput | "archived";
-/** Alias for AuditTrailItemKindOutput */
-export type AuditTrailItemKindOutput =
-  | string
-  | "as"
-  | "contact"
-  | "domain"
-  | "host"
-  | "ipAddress"
-  | "ipBlock"
-  | "page"
-  | "sslCert";
-/** Alias for ObservedPortStateValueOutput */
-export type ObservedPortStateValueOutput =
-  | string
-  | "open"
-  | "closed"
-  | "filtered";
-/** Alias for SslCertAssetValidationTypeOutput */
-export type SslCertAssetValidationTypeOutput =
-  | string
-  | "domainValidation"
-  | "organizationValidation"
-  | "extendedValidation";
-/** Alias for PageAssetRedirectTypeOutput */
-export type PageAssetRedirectTypeOutput =
-  | string
-  | "httpHeader"
-  | "metaRefresh"
-  | "javascript"
-  | "final";
 /** Paged collection of AssetResource items */
 export type PagedAssetResourceOutput = Paged<AssetResourceOutput>;
-/** Alias for TaskStateOutput */
-export type TaskStateOutput =
-  | string
-  | "pending"
-  | "running"
-  | "paused"
-  | "complete"
-  | "incomplete"
-  | "failed"
-  | "warning";
-/** Alias for TaskPhaseOutput */
-export type TaskPhaseOutput = string | "running" | "polling" | "complete";
-/** Alias for ObservationTypeOutput */
-export type ObservationTypeOutput = string | "cve" | "insight";
-/** Alias for ObservationPriorityOutput */
-export type ObservationPriorityOutput =
-  | string
-  | "high"
-  | "medium"
-  | "low"
-  | "none";
-/** Alias for GlobalAssetTypeOutput */
-export type GlobalAssetTypeOutput =
-  | string
-  | "page"
-  | "resource"
-  | "mailServer"
-  | "nameServer"
-  | "host"
-  | "domain"
-  | "ipAddress"
-  | "ipBlock"
-  | "as"
-  | "contact"
-  | "sslCert";
-/** Alias for GlobalInventoryStateOutput */
-export type GlobalInventoryStateOutput =
-  | string
-  | "candidate"
-  | "candidateInvestigate"
-  | "confirmed"
-  | "associated"
-  | "associatedPartner"
-  | "associatedThirdParty"
-  | "archived"
-  | "dismissed"
-  | "autoconfirmed";
-/** Alias for DataConnectionContentOutput */
-export type DataConnectionContentOutput =
-  | string
-  | "assets"
-  | "attackSurfaceInsights";
-/** Alias for DataConnectionFrequencyOutput */
-export type DataConnectionFrequencyOutput =
-  | string
-  | "daily"
-  | "weekly"
-  | "monthly";
 /** Paged collection of DataConnection items */
 export type PagedDataConnectionOutput = Paged<DataConnectionOutput>;
-/** Alias for DiscoSourceKindOutput */
-export type DiscoSourceKindOutput =
-  | string
-  | "as"
-  | "attribute"
-  | "contact"
-  | "domain"
-  | "host"
-  | "ipBlock";
-/** Alias for DiscoRunStateOutput */
-export type DiscoRunStateOutput =
-  | string
-  | "pending"
-  | "running"
-  | "completed"
-  | "failed";
 /** Paged collection of DiscoGroup items */
 export type PagedDiscoGroupOutput = Paged<DiscoGroupOutput>;
-/** Alias for AssetKindOutput */
-export type AssetKindOutput =
-  | string
-  | "as"
-  | "contact"
-  | "domain"
-  | "host"
-  | "ipAddress"
-  | "ipBlock"
-  | "page"
-  | "sslCert";
 /** Paged collection of DiscoTemplate items */
 export type PagedDiscoTemplateOutput = Paged<DiscoTemplateOutput>;
-/** Alias for ReportBillableAssetBreakdownKindOutput */
-export type ReportBillableAssetBreakdownKindOutput =
-  | string
-  | "domain"
-  | "host"
-  | "ipAddress";
 /** Paged collection of SavedFilter items */
 export type PagedSavedFilterOutput = Paged<SavedFilterOutput>;
 /** Paged collection of Task items */
 export type PagedTaskOutput = Paged<TaskOutput>;
-/** Paged collection of CisaCveResult items */
-export type PagedCisaCveResultOutput = Paged<CisaCveResultOutput>;
+/** Paged collection of CisaCveResponse items */
+export type PagedCisaCveResponseOutput = Paged<CisaCveResponseOutput>;

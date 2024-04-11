@@ -1,4 +1,4 @@
-# Azure Easm REST client library for JavaScript
+# Azure DefenderEasm REST client library for JavaScript
 
 Defender EASM discovers and maps your digital attack surface to provide an "outside-in" perspective using probes to discover assets. The assets are provided with detailed metadata associated, including vulnerabilities, configurations and web components, allowing customers to view and prioritize external risk. The EASM REST API enables you to develop clients that integrate with your application.
 
@@ -6,10 +6,8 @@ Defender EASM discovers and maps your digital attack surface to provide an "outs
 
 Key links:
 
-- [Source code](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/easm/defendereasm-rest)
 - [Package (NPM)](https://www.npmjs.com/package/@azure-rest/defender-easm-rest)
 - [API reference documentation](https://docs.microsoft.com/javascript/api/@azure-rest/defender-easm-rest?view=azure-node-preview)
-- [Samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/easm/defendereasm-rest/samples)
 
 ## Getting started
 
@@ -23,13 +21,13 @@ Key links:
 
 ### Install the `@azure-rest/defender-easm-rest` package
 
-Install the Azure Easm REST client REST client library for JavaScript with `npm`:
+Install the Azure DefenderEasm REST client REST client library for JavaScript with `npm`:
 
 ```bash
 npm install @azure-rest/defender-easm-rest
 ```
 
-### Create and authenticate a `EasmClient`
+### Create and authenticate a `EasmServiceClient`
 
 To use an [Azure Active Directory (AAD) token credential](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/identity/identity/samples/AzureIdentityExamples.md#authenticating-with-a-pre-fetched-access-token),
 provide an instance of the desired credential type obtained from the

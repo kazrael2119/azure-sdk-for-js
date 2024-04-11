@@ -93,29 +93,23 @@ export interface AsAssetResourceOutput extends AssetResourceOutputParent {
 }
 
 // @public
-export interface AssetChainKindSummaryResultOutput {
+export interface AssetChainKindSummaryResponseOutput {
     affectedCount: number;
-    kind: AssetKindOutput;
+    kind: string;
 }
 
 // @public
 export interface AssetChainRequest {
-    assetChainSource?: AssetChainSource;
+    assetChainSource?: string;
     sourceIds?: string[];
 }
 
 // @public
-export type AssetChainSource = string | "DISCO_GROUP" | "DISCO_SEED" | "ASSET_CHAIN";
-
-// @public
-export interface AssetChainSummaryResultOutput {
-    affectedAssetsSummary: Array<AssetChainKindSummaryResultOutput>;
-    affectedGroupsSummary: Array<DiscoGroupSummaryResultOutput>;
+export interface AssetChainSummaryResponseOutput {
+    affectedAssetsSummary: Array<AssetChainKindSummaryResponseOutput>;
+    affectedGroupsSummary: Array<DiscoGroupSummaryResponseOutput>;
     errors?: Array<ErrorResponse>;
 }
-
-// @public
-export type AssetKindOutput = string | "as" | "contact" | "domain" | "host" | "ipAddress" | "ipBlock" | "page" | "sslCert";
 
 // @public
 export interface AssetPageResultOutput {
@@ -142,15 +136,11 @@ export interface AssetResourceOutputParent {
     name?: string;
     // (undocumented)
     reason?: string;
-    // (undocumented)
-    state?: AssetStateOutput;
+    state?: string;
     updatedDate?: string;
     uuid?: string;
     wildcard?: boolean;
 }
-
-// @public
-export type AssetResponseType = string | "id" | "standard" | "full" | "reduced";
 
 // @public (undocumented)
 export interface AssetSecurityPolicyOutput {
@@ -173,17 +163,6 @@ export interface AssetSecurityPolicyOutput {
 }
 
 // @public
-export interface AssetsExportRequestBody {
-    // (undocumented)
-    columns: string[];
-    // (undocumented)
-    fileName: string;
-}
-
-// @public
-export type AssetStateOutput = string | AssetUpdateStateOutput | "archived";
-
-// @public
 export interface AssetSummaryResultOutput {
     children?: Array<AssetSummaryResultOutput>;
     count?: number;
@@ -201,18 +180,9 @@ export interface AssetSummaryResultOutput {
 export interface AssetUpdateData {
     externalId?: string;
     labels?: TypeSpecRecord;
-    state?: AssetUpdateState;
-    transfers?: AssetUpdateTransfers;
+    state?: string;
+    transfers?: string;
 }
-
-// @public
-export type AssetUpdateState = string | "candidate" | "confirmed" | "dismissed" | "candidateInvestigate" | "associatedPartner" | "associatedThirdparty";
-
-// @public
-export type AssetUpdateStateOutput = string | "candidate" | "confirmed" | "dismissed" | "candidateInvestigate" | "associatedPartner" | "associatedThirdparty";
-
-// @public
-export type AssetUpdateTransfers = string | "as" | "contact" | "domain" | "host" | "ipAddress" | "ipBlock" | "page" | "sslCert";
 
 // @public (undocumented)
 export interface AttributeOutput {
@@ -233,13 +203,10 @@ export interface AttributeOutput {
 }
 
 // @public
-export type AuditTrailItemKindOutput = string | "as" | "contact" | "domain" | "host" | "ipAddress" | "ipBlock" | "page" | "sslCert";
-
-// @public
 export interface AuditTrailItemOutput {
     displayName?: string;
     id?: string;
-    kind?: AuditTrailItemKindOutput;
+    kind?: string;
     name?: string;
     reason?: string;
 }
@@ -330,7 +297,7 @@ export interface CancelTaskDefaultResponse extends HttpResponse {
 export type CancelTaskParameters = RequestParameters;
 
 // @public
-export interface CisaCveResultOutput {
+export interface CisaCveResponseOutput {
     count: number;
     readonly cveId: string;
     dateAdded: string;
@@ -387,7 +354,7 @@ export interface CookieOutput {
 }
 
 // @public
-function createClient(endpointParam: string, credentials: TokenCredential, options?: ClientOptions): EasmClient;
+function createClient(endpointParam: string, credentials: TokenCredential, options?: ClientOptions): EasmServiceClient;
 export default createClient;
 
 // @public
@@ -541,30 +508,18 @@ export interface DailyDeltaTypeResponseOutput extends DeltaTypeResponseOutput {
     count: number;
 }
 
-// @public
-export type DataConnectionContent = string | "assets" | "attackSurfaceInsights";
-
-// @public
-export type DataConnectionContentOutput = string | "assets" | "attackSurfaceInsights";
-
 // @public (undocumented)
 export type DataConnectionData = DataConnectionDataParent | LogAnalyticsDataConnectionData | AzureDataExplorerDataConnectionData;
 
 // @public (undocumented)
 export interface DataConnectionDataParent {
-    content?: DataConnectionContent;
-    frequency?: DataConnectionFrequency;
+    content?: string;
+    frequency?: string;
     frequencyOffset?: number;
     // (undocumented)
     kind: string;
     name?: string;
 }
-
-// @public
-export type DataConnectionFrequency = string | "daily" | "weekly" | "monthly";
-
-// @public
-export type DataConnectionFrequencyOutput = string | "daily" | "weekly" | "monthly";
 
 // @public (undocumented)
 export type DataConnectionOutput = DataConnectionOutputParent | LogAnalyticsDataConnectionOutput | AzureDataExplorerDataConnectionOutput;
@@ -572,10 +527,10 @@ export type DataConnectionOutput = DataConnectionOutputParent | LogAnalyticsData
 // @public (undocumented)
 export interface DataConnectionOutputParent {
     active?: boolean;
-    content?: DataConnectionContentOutput;
+    content?: string;
     readonly createdDate?: string;
     displayName?: string;
-    frequency?: DataConnectionFrequencyOutput;
+    frequency?: string;
     frequencyOffset?: number;
     id?: string;
     readonly inactiveMessage?: string;
@@ -643,34 +598,20 @@ export interface DeleteSavedFilterDefaultResponse extends HttpResponse {
 export type DeleteSavedFilterParameters = RequestParameters;
 
 // @public (undocumented)
-export interface DeltaDateResultOutput {
+export interface DeltaDateResponseOutput {
     date: string;
     deltas: Array<DailyDeltaTypeResponseOutput>;
 }
 
-// @public
-export interface DeltaDetailsRequestBody {
-    date?: string;
-    // (undocumented)
-    daysPrior?: number;
-    // (undocumented)
-    deltaDetailType?: DeltaDetailType;
-    // (undocumented)
-    kind?: GlobalAssetType;
-}
-
-// @public
-export type DeltaDetailType = string | "added" | "removed";
-
 // @public (undocumented)
-export interface DeltaPageResultOutput {
+export interface DeltaPageResponseOutput {
     nextLink?: string;
     totalElements?: number;
-    value?: Array<DeltaResultOutput>;
+    value?: Array<DeltaResponseOutput>;
 }
 
 // @public (undocumented)
-export interface DeltaRangeResultOutput {
+export interface DeltaRangeResponseOutput {
     added: number;
     difference: number;
     kindSummaries: Array<DeltaTypeResponseOutput>;
@@ -679,32 +620,25 @@ export interface DeltaRangeResultOutput {
 }
 
 // @public (undocumented)
-export interface DeltaResultOutput {
+export interface DeltaResponseOutput {
     createdAt: string;
-    kind: GlobalAssetTypeOutput;
+    kind: string;
     name: string;
-    state: GlobalInventoryStateOutput;
+    state: string;
     updatedAt: string;
 }
 
-// @public
-export interface DeltaSummaryRequestBody {
-    date?: string;
-    // (undocumented)
-    daysPrior?: number;
-}
-
 // @public (undocumented)
-export interface DeltaSummaryResultOutput {
-    daily: Array<DeltaDateResultOutput>;
-    summary: DeltaRangeResultOutput;
+export interface DeltaSummaryResponseOutput {
+    daily: Array<DeltaDateResponseOutput>;
+    summary: DeltaRangeResponseOutput;
 }
 
 // @public (undocumented)
 export interface DeltaTypeResponseOutput {
     added: number;
     difference: number;
-    kind: GlobalAssetTypeOutput;
+    kind: string;
     removed: number;
 }
 
@@ -789,7 +723,7 @@ export interface DiscoGroupOutput {
 }
 
 // @public
-export interface DiscoGroupSummaryResultOutput {
+export interface DiscoGroupSummaryResponseOutput {
     displayName: string;
     id: string;
     name: string;
@@ -809,30 +743,21 @@ export interface DiscoRunResultOutput {
     names?: string[];
     seeds?: Array<DiscoSourceOutput>;
     startedDate?: string;
-    state?: DiscoRunStateOutput;
+    state?: string;
     submittedDate?: string;
     tier?: string;
     totalAssetsFoundCount?: number;
 }
 
 // @public
-export type DiscoRunStateOutput = string | "pending" | "running" | "completed" | "failed";
-
-// @public
 export interface DiscoSource {
-    kind?: DiscoSourceKind;
+    kind?: string;
     name?: string;
 }
 
 // @public
-export type DiscoSourceKind = string | "as" | "attribute" | "contact" | "domain" | "host" | "ipBlock";
-
-// @public
-export type DiscoSourceKindOutput = string | "as" | "attribute" | "contact" | "domain" | "host" | "ipBlock";
-
-// @public
 export interface DiscoSourceOutput {
-    kind?: DiscoSourceKindOutput;
+    kind?: string;
     name?: string;
 }
 
@@ -1022,7 +947,7 @@ export interface DownloadTaskDefaultResponse extends HttpResponse {
 export type DownloadTaskParameters = RequestParameters;
 
 // @public (undocumented)
-export type EasmClient = Client & {
+export type EasmServiceClient = Client & {
     path: Routes;
 };
 
@@ -1046,7 +971,7 @@ export interface GetAssetChainSummary {
 // @public
 export interface GetAssetChainSummary200Response extends HttpResponse {
     // (undocumented)
-    body: AssetChainSummaryResultOutput;
+    body: AssetChainSummaryResponseOutput;
     // (undocumented)
     status: "200";
 }
@@ -1120,12 +1045,6 @@ export interface GetAssetsExport200Response extends HttpResponse {
 }
 
 // @public (undocumented)
-export interface GetAssetsExportBodyParam {
-    // (undocumented)
-    body?: AssetsExportRequestBody;
-}
-
-// @public (undocumented)
 export interface GetAssetsExportDefaultHeaders {
     "x-ms-error-code"?: string;
 }
@@ -1141,7 +1060,7 @@ export interface GetAssetsExportDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export type GetAssetsExportParameters = GetAssetsExportQueryParam & GetAssetsExportBodyParam & RequestParameters;
+export type GetAssetsExportParameters = GetAssetsExportQueryParam & RequestParameters;
 
 // @public (undocumented)
 export interface GetAssetsExportQueryParam {
@@ -1151,6 +1070,10 @@ export interface GetAssetsExportQueryParam {
 
 // @public (undocumented)
 export interface GetAssetsExportQueryParamProperties {
+    // (undocumented)
+    columns?: string[];
+    // (undocumented)
+    fileName?: string;
     filter?: string;
     orderby?: string;
 }
@@ -1194,7 +1117,7 @@ export interface GetCisaCve {
 // @public
 export interface GetCisaCve200Response extends HttpResponse {
     // (undocumented)
-    body: CisaCveResultOutput;
+    body: CisaCveResponseOutput;
     // (undocumented)
     status: "200";
 }
@@ -1225,7 +1148,7 @@ export interface GetCisaCves {
 // @public
 export interface GetCisaCves200Response extends HttpResponse {
     // (undocumented)
-    body: PagedCisaCveResultOutput;
+    body: PagedCisaCveResponseOutput;
     // (undocumented)
     status: "200";
 }
@@ -1289,15 +1212,9 @@ export interface GetDeltaDetails {
 // @public
 export interface GetDeltaDetails200Response extends HttpResponse {
     // (undocumented)
-    body: DeltaPageResultOutput;
+    body: DeltaPageResponseOutput;
     // (undocumented)
     status: "200";
-}
-
-// @public (undocumented)
-export interface GetDeltaDetailsBodyParam {
-    // (undocumented)
-    body?: DeltaDetailsRequestBody;
 }
 
 // @public (undocumented)
@@ -1316,7 +1233,7 @@ export interface GetDeltaDetailsDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export type GetDeltaDetailsParameters = GetDeltaDetailsQueryParam & GetDeltaDetailsBodyParam & RequestParameters;
+export type GetDeltaDetailsParameters = GetDeltaDetailsQueryParam & RequestParameters;
 
 // @public (undocumented)
 export interface GetDeltaDetailsQueryParam {
@@ -1326,6 +1243,11 @@ export interface GetDeltaDetailsQueryParam {
 
 // @public (undocumented)
 export interface GetDeltaDetailsQueryParamProperties {
+    date?: string;
+    // (undocumented)
+    daysPrior?: number;
+    deltaDetailType?: string;
+    kind?: string;
     maxpagesize?: number;
     skip?: number;
 }
@@ -1338,15 +1260,9 @@ export interface GetDeltaSummary {
 // @public
 export interface GetDeltaSummary200Response extends HttpResponse {
     // (undocumented)
-    body: DeltaSummaryResultOutput;
+    body: DeltaSummaryResponseOutput;
     // (undocumented)
     status: "200";
-}
-
-// @public (undocumented)
-export interface GetDeltaSummaryBodyParam {
-    // (undocumented)
-    body?: DeltaSummaryRequestBody;
 }
 
 // @public (undocumented)
@@ -1365,7 +1281,20 @@ export interface GetDeltaSummaryDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export type GetDeltaSummaryParameters = GetDeltaSummaryBodyParam & RequestParameters;
+export type GetDeltaSummaryParameters = GetDeltaSummaryQueryParam & RequestParameters;
+
+// @public (undocumented)
+export interface GetDeltaSummaryQueryParam {
+    // (undocumented)
+    queryParameters?: GetDeltaSummaryQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface GetDeltaSummaryQueryParamProperties {
+    date?: string;
+    // (undocumented)
+    daysPrior?: number;
+}
 
 // @public (undocumented)
 export interface GetDiscoGroup {
@@ -1438,7 +1367,7 @@ export interface GetObservations {
 // @public
 export interface GetObservations200Response extends HttpResponse {
     // (undocumented)
-    body: ObservationPageResultOutput;
+    body: ObservationPageResponseOutput;
     // (undocumented)
     status: "200";
 }
@@ -1655,15 +1584,6 @@ export interface GetTaskDefaultResponse extends HttpResponse {
 
 // @public (undocumented)
 export type GetTaskParameters = RequestParameters;
-
-// @public
-export type GlobalAssetType = string | "page" | "resource" | "mailServer" | "nameServer" | "host" | "domain" | "ipAddress" | "ipBlock" | "as" | "contact" | "sslCert";
-
-// @public
-export type GlobalAssetTypeOutput = string | "page" | "resource" | "mailServer" | "nameServer" | "host" | "domain" | "ipAddress" | "ipBlock" | "as" | "contact" | "sslCert";
-
-// @public
-export type GlobalInventoryStateOutput = string | "candidate" | "candidateInvestigate" | "confirmed" | "associated" | "associatedPartner" | "associatedThirdParty" | "archived" | "dismissed" | "autoconfirmed";
 
 // @public (undocumented)
 export interface GuidPairOutput {
@@ -2153,7 +2073,7 @@ export interface ListAssetResourceQueryParamProperties {
     recentOnly?: boolean;
     // (undocumented)
     responseIncludes?: string[];
-    responseType?: AssetResponseType;
+    responseType?: string;
     skip?: number;
 }
 
@@ -2472,34 +2392,27 @@ export interface LogAnalyticsDataConnectionPropertiesOutput extends DataConnecti
 }
 
 // @public (undocumented)
-export interface ObservationPageResultOutput {
+export interface ObservationPageResponseOutput {
     // (undocumented)
     prioritySummary: TypeSpecRecordOutput;
     // (undocumented)
     totalElements: number;
     // (undocumented)
-    value: Array<ObservationResultOutput>;
+    value: Array<ObservationResponseOutput>;
 }
 
-// @public
-export type ObservationPriorityOutput = string | "high" | "medium" | "low" | "none";
-
 // @public (undocumented)
-export interface ObservationResultOutput {
+export interface ObservationResponseOutput {
     // (undocumented)
     cvssScoreV2: number;
     // (undocumented)
     cvssScoreV3: number;
     // (undocumented)
     name: string;
+    priority: string;
     // (undocumented)
-    priority: ObservationPriorityOutput;
-    // (undocumented)
-    type: ObservationTypeOutput[];
+    type: string[];
 }
-
-// @public
-export type ObservationTypeOutput = string | "cve" | "insight";
 
 // @public (undocumented)
 export interface ObservedBooleanOutput extends ObservedValueOutput {
@@ -2553,12 +2466,8 @@ export interface ObservedLongOutput extends ObservedValueOutput {
 export interface ObservedPortStateOutput extends ObservedValueOutput {
     // (undocumented)
     port?: number;
-    // (undocumented)
-    value?: ObservedPortStateValueOutput;
+    value?: string;
 }
-
-// @public
-export type ObservedPortStateValueOutput = string | "open" | "closed" | "filtered";
 
 // @public (undocumented)
 export interface ObservedStringOutput extends ObservedValueOutput {
@@ -2658,8 +2567,7 @@ export interface PageAssetOutput extends InventoryAssetOutput {
     nonHtmlFrames?: Array<ObservedBooleanOutput>;
     // (undocumented)
     parkedPage?: Array<ObservedBooleanOutput>;
-    // (undocumented)
-    redirectType?: PageAssetRedirectTypeOutput;
+    redirectType?: string;
     // (undocumented)
     redirectUrls?: Array<ObservedStringOutput>;
     // (undocumented)
@@ -2706,9 +2614,6 @@ export interface PageAssetOutput extends InventoryAssetOutput {
     windows?: Array<ObservedBooleanOutput>;
 }
 
-// @public
-export type PageAssetRedirectTypeOutput = string | "httpHeader" | "metaRefresh" | "javascript" | "final";
-
 // @public (undocumented)
 export interface PageAssetResourceOutput extends AssetResourceOutputParent {
     asset: PageAssetOutput;
@@ -2737,7 +2642,7 @@ export interface PageCauseOutput {
 export type PagedAssetResourceOutput = Paged<AssetResourceOutput>;
 
 // @public
-export type PagedCisaCveResultOutput = Paged<CisaCveResultOutput>;
+export type PagedCisaCveResponseOutput = Paged<CisaCveResponseOutput>;
 
 // @public
 export type PagedDataConnectionOutput = Paged<DataConnectionOutput>;
@@ -2822,12 +2727,9 @@ export interface ReportAssetSummaryResultOutput {
 }
 
 // @public
-export type ReportBillableAssetBreakdownKindOutput = string | "domain" | "host" | "ipAddress";
-
-// @public
 export interface ReportBillableAssetBreakdownOutput {
     count?: number;
-    kind?: ReportBillableAssetBreakdownKindOutput;
+    kind?: string;
 }
 
 // @public (undocumented)
@@ -3126,8 +3028,7 @@ export interface SslCertAssetOutput extends InventoryAssetOutput {
     subjectOrganizations?: string[];
     // (undocumented)
     subjectState?: string[];
-    // (undocumented)
-    validationType?: SslCertAssetValidationTypeOutput;
+    validationType?: string;
     // (undocumented)
     version?: number;
 }
@@ -3137,9 +3038,6 @@ export interface SslCertAssetResourceOutput extends AssetResourceOutputParent {
     asset: SslCertAssetOutput;
     kind: "sslCert";
 }
-
-// @public
-export type SslCertAssetValidationTypeOutput = string | "domainValidation" | "organizationValidation" | "extendedValidation";
 
 // @public (undocumented)
 export interface SslServerConfigOutput {
@@ -3185,17 +3083,11 @@ export interface TaskOutput {
     readonly id: string;
     lastPolledAt?: string;
     metadata?: TypeSpecRecordOutput;
-    phase?: TaskPhaseOutput;
+    phase?: string;
     reason?: string;
     startedAt?: string;
-    state?: TaskStateOutput;
+    state?: string;
 }
-
-// @public
-export type TaskPhaseOutput = string | "running" | "polling" | "complete";
-
-// @public
-export type TaskStateOutput = string | "pending" | "running" | "paused" | "complete" | "incomplete" | "failed" | "warning";
 
 // @public (undocumented)
 export interface TypeSpecRecord extends Record<string, boolean> {

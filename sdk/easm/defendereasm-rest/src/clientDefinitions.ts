@@ -125,9 +125,7 @@ export interface ListAssetResource {
   /** Retrieve a list of assets for the provided search parameters. */
   get(
     options?: ListAssetResourceParameters,
-  ): StreamableMethod<
-    ListAssetResource200Response | ListAssetResourceDefaultResponse
-  >;
+  ): StreamableMethod<ListAssetResource200Response | ListAssetResourceDefaultResponse>;
   /** Update labels on assets matching the provided filter. */
   post(
     options: UpdateAssetsParameters,
@@ -138,112 +136,87 @@ export interface GetAssetResource {
   /** Retrieve an asset by assetId. */
   get(
     options?: GetAssetResourceParameters,
-  ): StreamableMethod<
-    GetAssetResource200Response | GetAssetResourceDefaultResponse
-  >;
+  ): StreamableMethod<GetAssetResource200Response | GetAssetResourceDefaultResponse>;
 }
 
 export interface DismissAssetChain {
   /** Dismiss discovery chain for a given asset */
   post(
     options?: DismissAssetChainParameters,
-  ): StreamableMethod<
-    DismissAssetChain200Response | DismissAssetChainDefaultResponse
-  >;
+  ): StreamableMethod<DismissAssetChain200Response | DismissAssetChainDefaultResponse>;
 }
 
 export interface GetAssetsExport {
   /** Export a list of assets for the provided search parameters. */
   post(
     options?: GetAssetsExportParameters,
-  ): StreamableMethod<
-    GetAssetsExport200Response | GetAssetsExportDefaultResponse
-  >;
+  ): StreamableMethod<GetAssetsExport200Response | GetAssetsExportDefaultResponse>;
 }
 
 export interface GetObservations {
   /** Retrieve observations on an asset */
   post(
     options?: GetObservationsParameters,
-  ): StreamableMethod<
-    GetObservations200Response | GetObservationsDefaultResponse
-  >;
+  ): StreamableMethod<GetObservations200Response | GetObservationsDefaultResponse>;
 }
 
 export interface GetDeltaDetails {
   /** Retrieve a list of deltas for the provided time range. */
   post(
     options?: GetDeltaDetailsParameters,
-  ): StreamableMethod<
-    GetDeltaDetails200Response | GetDeltaDetailsDefaultResponse
-  >;
+  ): StreamableMethod<GetDeltaDetails200Response | GetDeltaDetailsDefaultResponse>;
 }
 
 export interface GetDeltaSummary {
   /** Retrieve a list of deltas with overall summary changes for the provided time range. */
   post(
     options?: GetDeltaSummaryParameters,
-  ): StreamableMethod<
-    GetDeltaSummary200Response | GetDeltaSummaryDefaultResponse
-  >;
+  ): StreamableMethod<GetDeltaSummary200Response | GetDeltaSummaryDefaultResponse>;
 }
 
 export interface ListDataConnection {
   /** Retrieve a list of data connections. */
   get(
     options?: ListDataConnectionParameters,
-  ): StreamableMethod<
-    ListDataConnection200Response | ListDataConnectionDefaultResponse
-  >;
+  ): StreamableMethod<ListDataConnection200Response | ListDataConnectionDefaultResponse>;
 }
 
 export interface ValidateDataConnection {
   /** Validate a data connection with a given dataConnectionName. */
   post(
     options?: ValidateDataConnectionParameters,
-  ): StreamableMethod<
-    ValidateDataConnection200Response | ValidateDataConnectionDefaultResponse
-  >;
+  ): StreamableMethod<ValidateDataConnection200Response | ValidateDataConnectionDefaultResponse>;
 }
 
 export interface GetDataConnection {
   /** Retrieve a data connection with a given dataConnectionName. */
   get(
     options?: GetDataConnectionParameters,
-  ): StreamableMethod<
-    GetDataConnection200Response | GetDataConnectionDefaultResponse
-  >;
+  ): StreamableMethod<GetDataConnection200Response | GetDataConnectionDefaultResponse>;
   /** Create or replace a data connection with a given dataConnectionName. */
   put(
     options?: CreateOrReplaceDataConnectionParameters,
   ): StreamableMethod<
-    | CreateOrReplaceDataConnection200Response
-    | CreateOrReplaceDataConnectionDefaultResponse
+    CreateOrReplaceDataConnection200Response | CreateOrReplaceDataConnectionDefaultResponse
   >;
   /** Delete a data connection with a given dataConnectionName. */
   delete(
     options?: DeleteDataConnectionParameters,
-  ): StreamableMethod<
-    DeleteDataConnection204Response | DeleteDataConnectionDefaultResponse
-  >;
+  ): StreamableMethod<DeleteDataConnection204Response | DeleteDataConnectionDefaultResponse>;
 }
 
 export interface ListDiscoGroup {
   /** Retrieve a list of discovery group for the provided search parameters. */
   get(
     options?: ListDiscoGroupParameters,
-  ): StreamableMethod<
-    ListDiscoGroup200Response | ListDiscoGroupDefaultResponse
-  >;
+  ): StreamableMethod<ListDiscoGroup200Response | ListDiscoGroupDefaultResponse>;
 }
 
 export interface ValidateDiscoGroup {
   /** Validate a discovery group with a given groupName. */
   post(
     options?: ValidateDiscoGroupParameters,
-  ): StreamableMethod<
-    ValidateDiscoGroup200Response | ValidateDiscoGroupDefaultResponse
-  >;
+  ): StreamableMethod<ValidateDiscoGroup200Response | ValidateDiscoGroupDefaultResponse>;
 }
 
 export interface GetDiscoGroup {
@@ -255,8 +228,7 @@ export interface GetDiscoGroup {
   put(
     options?: CreateOrReplaceDiscoGroupParameters,
   ): StreamableMethod<
-    | CreateOrReplaceDiscoGroup200Response
-    | CreateOrReplaceDiscoGroupDefaultResponse
+    CreateOrReplaceDiscoGroup200Response | CreateOrReplaceDiscoGroupDefaultResponse
   >;
 }
 
@@ -278,36 +250,28 @@ export interface GetAssetChainSummary {
   /** Retrieve an asset chain summary. */
   post(
     options?: GetAssetChainSummaryParameters,
-  ): StreamableMethod<
-    GetAssetChainSummary200Response | GetAssetChainSummaryDefaultResponse
-  >;
+  ): StreamableMethod<GetAssetChainSummary200Response | GetAssetChainSummaryDefaultResponse>;
 }
 
 export interface DismissSeedChain {
   /** Dismiss a discovery seed chain for given seed identifiers. */
   post(
     options?: DismissSeedChainParameters,
-  ): StreamableMethod<
-    DismissSeedChain200Response | DismissSeedChainDefaultResponse
-  >;
+  ): StreamableMethod<DismissSeedChain200Response | DismissSeedChainDefaultResponse>;
 }
 
 export interface ListDiscoTemplate {
   /** Retrieve a list of disco templates for the provided search parameters. */
   get(
     options?: ListDiscoTemplateParameters,
-  ): StreamableMethod<
-    ListDiscoTemplate200Response | ListDiscoTemplateDefaultResponse
-  >;
+  ): StreamableMethod<ListDiscoTemplate200Response | ListDiscoTemplateDefaultResponse>;
 }
 
 export interface GetDiscoTemplate {
   /** Retrieve a disco template with a given templateId. */
   get(
     options?: GetDiscoTemplateParameters,
-  ): StreamableMethod<
-    GetDiscoTemplate200Response | GetDiscoTemplateDefaultResponse
-  >;
+  ): StreamableMethod<GetDiscoTemplate200Response | GetDiscoTemplateDefaultResponse>;
 }
 
 export interface GetBillable {
@@ -335,40 +299,31 @@ export interface GetSnapshotExport {
   /** Get the most recent snapshot of asset summary values for the snapshot request exported to a file. */
   post(
     options?: GetSnapshotExportParameters,
-  ): StreamableMethod<
-    GetSnapshotExport200Response | GetSnapshotExportDefaultResponse
-  >;
+  ): StreamableMethod<GetSnapshotExport200Response | GetSnapshotExportDefaultResponse>;
 }
 
 export interface ListSavedFilter {
   /** Retrieve a list of saved filters for the provided search parameters. */
   get(
     options?: ListSavedFilterParameters,
-  ): StreamableMethod<
-    ListSavedFilter200Response | ListSavedFilterDefaultResponse
-  >;
+  ): StreamableMethod<ListSavedFilter200Response | ListSavedFilterDefaultResponse>;
 }
 
 export interface GetSavedFilter {
   /** Retrieve a saved filter by filterName. */
   get(
     options?: GetSavedFilterParameters,
-  ): StreamableMethod<
-    GetSavedFilter200Response | GetSavedFilterDefaultResponse
-  >;
+  ): StreamableMethod<GetSavedFilter200Response | GetSavedFilterDefaultResponse>;
   /** Create or replace a saved filter with a given filterName. */
   put(
     options?: CreateOrReplaceSavedFilterParameters,
   ): StreamableMethod<
-    | CreateOrReplaceSavedFilter200Response
-    | CreateOrReplaceSavedFilterDefaultResponse
+    CreateOrReplaceSavedFilter200Response | CreateOrReplaceSavedFilterDefaultResponse
   >;
   /** Delete a saved filter with a given filterName. */
   delete(
     options?: DeleteSavedFilterParameters,
-  ): StreamableMethod<
-    DeleteSavedFilter204Response | DeleteSavedFilterDefaultResponse
-  >;
+  ): StreamableMethod<DeleteSavedFilter204Response | DeleteSavedFilterDefaultResponse>;
 }
 
 export interface ListTask {
@@ -380,9 +335,7 @@ export interface ListTask {
 
 export interface GetTask {
   /** Retrieve a task by taskId. */
-  get(
-    options?: GetTaskParameters,
-  ): StreamableMethod<GetTask200Response | GetTaskDefaultResponse>;
+  get(options?: GetTaskParameters): StreamableMethod<GetTask200Response | GetTaskDefaultResponse>;
 }
 
 export interface CancelTask {
@@ -394,9 +347,7 @@ export interface CancelTask {
 
 export interface RunTask {
   /** Run a task by taskId. */
-  post(
-    options?: RunTaskParameters,
-  ): StreamableMethod<RunTask200Response | RunTaskDefaultResponse>;
+  post(options?: RunTaskParameters): StreamableMethod<RunTask200Response | RunTaskDefaultResponse>;
 }
 
 export interface DownloadTask {
@@ -426,10 +377,7 @@ export interface Routes {
   /** Resource for '/assets/\{assetId\}' has methods for the following verbs: get */
   (path: "/assets/{assetId}", assetId: string): GetAssetResource;
   /** Resource for '/assets/\{assetId\}:dismissAssetChain' has methods for the following verbs: post */
-  (
-    path: "/assets/{assetId}:dismissAssetChain",
-    assetId: string,
-  ): DismissAssetChain;
+  (path: "/assets/{assetId}:dismissAssetChain", assetId: string): DismissAssetChain;
   /** Resource for '/assets:export' has methods for the following verbs: post */
   (path: "/assets:export"): GetAssetsExport;
   /** Resource for '/assets/\{assetId\}:getObservations' has methods for the following verbs: post */
@@ -443,10 +391,7 @@ export interface Routes {
   /** Resource for '/dataConnections:validate' has methods for the following verbs: post */
   (path: "/dataConnections:validate"): ValidateDataConnection;
   /** Resource for '/dataConnections/\{dataConnectionName\}' has methods for the following verbs: get, put, delete */
-  (
-    path: "/dataConnections/{dataConnectionName}",
-    dataConnectionName: string,
-  ): GetDataConnection;
+  (path: "/dataConnections/{dataConnectionName}", dataConnectionName: string): GetDataConnection;
   /** Resource for '/discoGroups' has methods for the following verbs: get */
   (path: "/discoGroups"): ListDiscoGroup;
   /** Resource for '/discoGroups:validate' has methods for the following verbs: post */
@@ -493,6 +438,6 @@ export interface Routes {
   (path: "/cisaCves/{cveId}", cveId: string): GetCisaCve;
 }
 
-export type EasmClient = Client & {
+export type EasmServiceClient = Client & {
   path: Routes;
 };

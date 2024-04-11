@@ -3,42 +3,27 @@
 
 /** A request body used to update an asset. */
 export interface AssetUpdateData {
-  /** The state to update the asset to. */
-  state?: AssetUpdateState;
+  /**
+   * The state to update the asset to.
+   *
+   * Possible values: "candidate", "confirmed", "dismissed", "candidateInvestigate", "associatedPartner", "associatedThirdparty"
+   */
+  state?: string;
   /** A string which can be used to identify the asset in external systems. */
   externalId?: string;
   /** Any Labels to update the asset with. */
   labels?: TypeSpecRecord;
-  /** A list of asset types to cascade the updates to. */
-  transfers?: AssetUpdateTransfers;
+  /**
+   * A list of asset types to cascade the updates to.
+   *
+   * Possible values: "as", "contact", "domain", "host", "ipAddress", "ipBlock", "page", "sslCert"
+   */
+  transfers?: string;
 }
 
 export interface TypeSpecRecord extends Record<string, boolean> {}
 
-/** A request body used to export an asset. */
-export interface AssetsExportRequestBody {
-  fileName: string;
-  columns: string[];
-}
-
-/** A request body used to retrieve a list of deltas. */
-export interface DeltaDetailsRequestBody {
-  deltaDetailType?: DeltaDetailType;
-  daysPrior?: number;
-  kind?: GlobalAssetType;
-  /** expected format to be: yyyy-MM-dd */
-  date?: string;
-}
-
-/** A request body used to retrieve a delta summary. */
-export interface DeltaSummaryRequestBody {
-  daysPrior?: number;
-  /** expected format to be: yyyy-MM-dd */
-  date?: string;
-}
-
-export interface LogAnalyticsDataConnectionProperties
-  extends DataConnectionProperties {
+export interface LogAnalyticsDataConnectionProperties extends DataConnectionProperties {
   /** log analytics api key */
   apiKey?: string;
   /** log analytics workspace id */
@@ -48,8 +33,7 @@ export interface LogAnalyticsDataConnectionProperties
 /** The properties required to establish connection to a particular service */
 export interface DataConnectionProperties {}
 
-export interface AzureDataExplorerDataConnectionProperties
-  extends DataConnectionProperties {
+export interface AzureDataExplorerDataConnectionProperties extends DataConnectionProperties {
   /** The azure data explorer cluster name */
   clusterName?: string;
   /** The azure data explorer region */
@@ -61,25 +45,31 @@ export interface AzureDataExplorerDataConnectionProperties
 export interface DataConnectionDataParent {
   /** The name of data connection */
   name?: string;
-  /** The type of data the data connection will transfer. */
-  content?: DataConnectionContent;
-  /** The rate at which the data connection will receive updates. */
-  frequency?: DataConnectionFrequency;
+  /**
+   * The type of data the data connection will transfer.
+   *
+   * Possible values: "assets", "attackSurfaceInsights"
+   */
+  content?: string;
+  /**
+   * The rate at which the data connection will receive updates.
+   *
+   * Possible values: "daily", "weekly", "monthly"
+   */
+  frequency?: string;
   /** The day to update the data connection on. (1-7 for weekly, 1-31 for monthly) */
   frequencyOffset?: number;
   kind: string;
 }
 
-export interface LogAnalyticsDataConnectionData
-  extends DataConnectionDataParent {
+export interface LogAnalyticsDataConnectionData extends DataConnectionDataParent {
   /** The kind of DataConnectionData */
   kind: "logAnalytics";
   /** properties */
   properties: LogAnalyticsDataConnectionProperties;
 }
 
-export interface AzureDataExplorerDataConnectionData
-  extends DataConnectionDataParent {
+export interface AzureDataExplorerDataConnectionData extends DataConnectionDataParent {
   /** The kind of DataConnectionData */
   kind: "azureDataExplorer";
   /** properties */
@@ -88,8 +78,12 @@ export interface AzureDataExplorerDataConnectionData
 
 /** Source entity used to drive discovery. */
 export interface DiscoSource {
-  /** The kind of disco source. */
-  kind?: DiscoSourceKind;
+  /**
+   * The kind of disco source.
+   *
+   * Possible values: "as", "attribute", "contact", "domain", "host", "ipBlock"
+   */
+  kind?: string;
   /** The name for the disco source. */
   name?: string;
 }
@@ -116,8 +110,12 @@ export interface DiscoGroupData {
 
 /** AssetChainRequest containing information needed for the retrieval of the asset chain summary. */
 export interface AssetChainRequest {
-  /** Asset chain source. */
-  assetChainSource?: AssetChainSource;
+  /**
+   * Asset chain source.
+   *
+   * Possible values: "DISCO_GROUP", "DISCO_SEED", "ASSET_CHAIN"
+   */
+  assetChainSource?: string;
   /** A collection of asset chain source ids. */
   sourceIds?: string[];
 }
@@ -172,60 +170,3 @@ export type DataConnectionData =
   | DataConnectionDataParent
   | LogAnalyticsDataConnectionData
   | AzureDataExplorerDataConnectionData;
-/** Alias for AssetResponseType */
-export type AssetResponseType = string | "id" | "standard" | "full" | "reduced";
-/** Alias for AssetUpdateState */
-export type AssetUpdateState =
-  | string
-  | "candidate"
-  | "confirmed"
-  | "dismissed"
-  | "candidateInvestigate"
-  | "associatedPartner"
-  | "associatedThirdparty";
-/** Alias for AssetUpdateTransfers */
-export type AssetUpdateTransfers =
-  | string
-  | "as"
-  | "contact"
-  | "domain"
-  | "host"
-  | "ipAddress"
-  | "ipBlock"
-  | "page"
-  | "sslCert";
-/** Alias for DeltaDetailType */
-export type DeltaDetailType = string | "added" | "removed";
-/** Alias for GlobalAssetType */
-export type GlobalAssetType =
-  | string
-  | "page"
-  | "resource"
-  | "mailServer"
-  | "nameServer"
-  | "host"
-  | "domain"
-  | "ipAddress"
-  | "ipBlock"
-  | "as"
-  | "contact"
-  | "sslCert";
-/** Alias for DataConnectionContent */
-export type DataConnectionContent = string | "assets" | "attackSurfaceInsights";
-/** Alias for DataConnectionFrequency */
-export type DataConnectionFrequency = string | "daily" | "weekly" | "monthly";
-/** Alias for DiscoSourceKind */
-export type DiscoSourceKind =
-  | string
-  | "as"
-  | "attribute"
-  | "contact"
-  | "domain"
-  | "host"
-  | "ipBlock";
-/** Alias for AssetChainSource */
-export type AssetChainSource =
-  | string
-  | "DISCO_GROUP"
-  | "DISCO_SEED"
-  | "ASSET_CHAIN";

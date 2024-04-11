@@ -7,16 +7,16 @@ import {
   PagedAssetResourceOutput,
   TaskOutput,
   AssetResourceOutput,
-  ObservationPageResultOutput,
-  DeltaPageResultOutput,
-  DeltaSummaryResultOutput,
+  ObservationPageResponseOutput,
+  DeltaPageResponseOutput,
+  DeltaSummaryResponseOutput,
   PagedDataConnectionOutput,
   ValidateResultOutput,
   DataConnectionOutput,
   PagedDiscoGroupOutput,
   DiscoGroupOutput,
   DiscoRunPageResultOutput,
-  AssetChainSummaryResultOutput,
+  AssetChainSummaryResponseOutput,
   PagedDiscoTemplateOutput,
   DiscoTemplateOutput,
   ReportBillableAssetSummaryResultOutput,
@@ -25,8 +25,8 @@ import {
   PagedSavedFilterOutput,
   SavedFilterOutput,
   PagedTaskOutput,
-  PagedCisaCveResultOutput,
-  CisaCveResultOutput,
+  PagedCisaCveResponseOutput,
+  CisaCveResponseOutput,
 } from "./outputModels.js";
 
 /** The request has succeeded. */
@@ -117,7 +117,7 @@ export interface GetAssetsExportDefaultResponse extends HttpResponse {
 /** The request has succeeded. */
 export interface GetObservations200Response extends HttpResponse {
   status: "200";
-  body: ObservationPageResultOutput;
+  body: ObservationPageResponseOutput;
 }
 
 export interface GetObservationsDefaultHeaders {
@@ -134,7 +134,7 @@ export interface GetObservationsDefaultResponse extends HttpResponse {
 /** The request has succeeded. */
 export interface GetDeltaDetails200Response extends HttpResponse {
   status: "200";
-  body: DeltaPageResultOutput;
+  body: DeltaPageResponseOutput;
 }
 
 export interface GetDeltaDetailsDefaultHeaders {
@@ -151,7 +151,7 @@ export interface GetDeltaDetailsDefaultResponse extends HttpResponse {
 /** The request has succeeded. */
 export interface GetDeltaSummary200Response extends HttpResponse {
   status: "200";
-  body: DeltaSummaryResultOutput;
+  body: DeltaSummaryResponseOutput;
 }
 
 export interface GetDeltaSummaryDefaultHeaders {
@@ -227,8 +227,7 @@ export interface CreateOrReplaceDataConnectionDefaultHeaders {
   "x-ms-error-code"?: string;
 }
 
-export interface CreateOrReplaceDataConnectionDefaultResponse
-  extends HttpResponse {
+export interface CreateOrReplaceDataConnectionDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
   headers: RawHttpHeaders & CreateOrReplaceDataConnectionDefaultHeaders;
@@ -354,7 +353,7 @@ export interface ListRunsDefaultResponse extends HttpResponse {
 /** The request has succeeded. */
 export interface GetAssetChainSummary200Response extends HttpResponse {
   status: "200";
-  body: AssetChainSummaryResultOutput;
+  body: AssetChainSummaryResponseOutput;
 }
 
 export interface GetAssetChainSummaryDefaultHeaders {
@@ -532,8 +531,7 @@ export interface CreateOrReplaceSavedFilterDefaultHeaders {
   "x-ms-error-code"?: string;
 }
 
-export interface CreateOrReplaceSavedFilterDefaultResponse
-  extends HttpResponse {
+export interface CreateOrReplaceSavedFilterDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
   headers: RawHttpHeaders & CreateOrReplaceSavedFilterDefaultHeaders;
@@ -643,7 +641,7 @@ export interface DownloadTaskDefaultResponse extends HttpResponse {
 /** The request has succeeded. */
 export interface GetCisaCves200Response extends HttpResponse {
   status: "200";
-  body: PagedCisaCveResultOutput;
+  body: PagedCisaCveResponseOutput;
 }
 
 export interface GetCisaCvesDefaultHeaders {
@@ -660,7 +658,7 @@ export interface GetCisaCvesDefaultResponse extends HttpResponse {
 /** The request has succeeded. */
 export interface GetCisaCve200Response extends HttpResponse {
   status: "200";
-  body: CisaCveResultOutput;
+  body: CisaCveResponseOutput;
 }
 
 export interface GetCisaCveDefaultHeaders {

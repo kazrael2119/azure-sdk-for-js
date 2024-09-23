@@ -17,6 +17,7 @@ describe("MongoCluster test", () => {
   let recorder: Recorder;
   let subscriptionId: string;
   let client: MongoClusterManagementClient;
+  let client1: MongoClusterManagementClient;
   let location: string;
   let resourceGroup: string;
   let resourcename: string;
@@ -32,6 +33,11 @@ describe("MongoCluster test", () => {
       credential,
       subscriptionId,
       recorder.configureClientOptions({}),
+    )
+    client1 = new MongoClusterManagementClient(
+      credential,
+      subscriptionId,
+      recorder.configureClientOptions({ apiVersion: "2024-03-01-preview" }),
     );
     location = "eastus";
     resourceGroup = "czwjstest";
@@ -78,6 +84,33 @@ describe("MongoCluster test", () => {
     );
     assert.equal(res.name, resourcename);
   });
+
+  it.only("mongoClusters create test with 2024-03-01-preview", async function () {
+    const res = await client1.mongoClusters.createOrUpdate(
+      resourceGroup,
+      "testmongocluster1",
+      {
+        location,
+        properties: {
+          administratorLogin: "mongoAdmin",
+          administratorLoginPassword: "SecureString;",
+          nodeGroupSpecs: [
+            {
+              diskSizeGB: 128,
+              enableHa: true,
+              kind: "Shard",
+              nodeCount: 1,
+              sku: "M30",
+            },
+          ],
+          serverVersion: "5.0",
+        },
+      },
+      testPollingOptions,
+    );
+    assert.equal(res.name, "testmongocluster1");
+  });
+
 
   it("firerules create test", async function () {
     const res = await client.firewallRules.createOrUpdate(

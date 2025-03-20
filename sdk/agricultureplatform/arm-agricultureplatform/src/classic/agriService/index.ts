@@ -3,15 +3,13 @@
 
 import { AgriculturePlatformContext } from "../../api/agriculturePlatformContext.js";
 import {
-  agriServiceListAvailableSolutions,
-  agriServiceListBySubscription,
-  agriServiceListByResourceGroup,
-  agriServiceDelete,
-  agriServiceUpdate,
-  agriServiceCreateOrUpdate,
-  agriServiceGet,
-} from "../../api/agriService/index.js";
-import {
+  listAvailableSolutions,
+  listBySubscription,
+  listByResourceGroup,
+  $delete,
+  update,
+  createOrUpdate,
+  get,
   AgriServiceListAvailableSolutionsOptionalParams,
   AgriServiceListBySubscriptionOptionalParams,
   AgriServiceListByResourceGroupOptionalParams,
@@ -19,7 +17,7 @@ import {
   AgriServiceUpdateOptionalParams,
   AgriServiceCreateOrUpdateOptionalParams,
   AgriServiceGetOptionalParams,
-} from "../../api/options.js";
+} from "../../api/agriService/index.js";
 import {
   AgriServiceResource,
   AgriServiceResourceUpdate,
@@ -46,6 +44,11 @@ export interface AgriServiceOperations {
     options?: AgriServiceListByResourceGroupOptionalParams,
   ) => PagedAsyncIterableIterator<AgriServiceResource>;
   /** Delete a AgriServiceResource */
+  /**
+   *  @fixme delete is a reserved word that cannot be used as an operation name.
+   *         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript")
+   *         to the operation to override the generated name.
+   */
   delete: (
     resourceGroupName: string,
     agriServiceResourceName: string,
@@ -80,37 +83,44 @@ function _getAgriService(context: AgriculturePlatformContext) {
       agriServiceResourceName: string,
       options?: AgriServiceListAvailableSolutionsOptionalParams,
     ) =>
-      agriServiceListAvailableSolutions(
+      listAvailableSolutions(
         context,
         resourceGroupName,
         agriServiceResourceName,
         options,
       ),
-    listBySubscription: (options?: AgriServiceListBySubscriptionOptionalParams) =>
-      agriServiceListBySubscription(context, options),
+    listBySubscription: (
+      options?: AgriServiceListBySubscriptionOptionalParams,
+    ) => listBySubscription(context, options),
     listByResourceGroup: (
       resourceGroupName: string,
       options?: AgriServiceListByResourceGroupOptionalParams,
-    ) => agriServiceListByResourceGroup(context, resourceGroupName, options),
+    ) => listByResourceGroup(context, resourceGroupName, options),
     delete: (
       resourceGroupName: string,
       agriServiceResourceName: string,
       options?: AgriServiceDeleteOptionalParams,
-    ) => agriServiceDelete(context, resourceGroupName, agriServiceResourceName, options),
+    ) => $delete(context, resourceGroupName, agriServiceResourceName, options),
     update: (
       resourceGroupName: string,
       agriServiceResourceName: string,
       properties: AgriServiceResourceUpdate,
       options?: AgriServiceUpdateOptionalParams,
     ) =>
-      agriServiceUpdate(context, resourceGroupName, agriServiceResourceName, properties, options),
+      update(
+        context,
+        resourceGroupName,
+        agriServiceResourceName,
+        properties,
+        options,
+      ),
     createOrUpdate: (
       resourceGroupName: string,
       agriServiceResourceName: string,
       resource: AgriServiceResource,
       options?: AgriServiceCreateOrUpdateOptionalParams,
     ) =>
-      agriServiceCreateOrUpdate(
+      createOrUpdate(
         context,
         resourceGroupName,
         agriServiceResourceName,
@@ -121,7 +131,7 @@ function _getAgriService(context: AgriculturePlatformContext) {
       resourceGroupName: string,
       agriServiceResourceName: string,
       options?: AgriServiceGetOptionalParams,
-    ) => agriServiceGet(context, resourceGroupName, agriServiceResourceName, options),
+    ) => get(context, resourceGroupName, agriServiceResourceName, options),
   };
 }
 

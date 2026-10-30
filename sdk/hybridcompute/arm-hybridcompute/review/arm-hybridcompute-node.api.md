@@ -52,7 +52,7 @@ export type AgentConfigurationMode = string;
 
 // @public
 export interface AgentUpgrade {
-    correlationId?: string;
+    correlationId?: number;
     desiredVersion?: string;
     enableAutomaticUpgrade?: boolean;
     readonly lastAttemptDesiredVersion?: string;

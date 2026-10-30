@@ -399,7 +399,7 @@ export interface ErrorAdditionalInfo {
 // @public
 export interface ErrorDetail {
     readonly additionalInfo?: ErrorAdditionalInfo[];
-    readonly code?: string;
+    readonly code?: number;
     readonly details?: ErrorDetail[];
     readonly message?: string;
     readonly target?: string;

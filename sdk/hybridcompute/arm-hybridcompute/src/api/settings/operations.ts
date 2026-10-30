@@ -36,7 +36,7 @@ export function _patchSend(
       baseResourceType: baseResourceType,
       baseResourceName: baseResourceName,
       settingsResourceName: settingsResourceName,
-      "api%2Dversion": context.apiVersion ?? "2026-07-15",
+      "api%2Dversion": context.apiVersion ?? "2026-07-15-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -106,7 +106,7 @@ export function _updateSend(
       baseResourceType: baseResourceType,
       baseResourceName: baseResourceName,
       settingsResourceName: settingsResourceName,
-      "api%2Dversion": context.apiVersion ?? "2026-07-15",
+      "api%2Dversion": context.apiVersion ?? "2026-07-15-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -175,7 +175,7 @@ export function _getSend(
       baseResourceType: baseResourceType,
       baseResourceName: baseResourceName,
       settingsResourceName: settingsResourceName,
-      "api%2Dversion": context.apiVersion ?? "2026-07-15",
+      "api%2Dversion": context.apiVersion ?? "2026-07-15-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

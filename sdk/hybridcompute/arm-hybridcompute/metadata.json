@@ -1,6 +1,6 @@
 {
   "apiVersions": {
-    "Microsoft.HybridCompute": "2026-07-15"
+    "Microsoft.HybridCompute": "2026-07-15-preview"
   },
   "emitterVersion": "0.55.1",
   "crossLanguageDefinitions": {

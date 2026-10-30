@@ -42,7 +42,7 @@ export function _reconcileForPrivateLinkScopeSend(
       resourceGroupName: resourceGroupName,
       scopeName: scopeName,
       perimeterName: perimeterName,
-      "api%2Dversion": context.apiVersion ?? "2026-07-15",
+      "api%2Dversion": context.apiVersion ?? "2026-07-15-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -98,7 +98,7 @@ export function reconcileForPrivateLinkScope(
           options,
         ),
       resourceLocationConfig: "location",
-      apiVersion: context.apiVersion ?? "2026-07-15",
+      apiVersion: context.apiVersion ?? "2026-07-15-preview",
     },
   ) as PollerLike<
     OperationState<NetworkSecurityPerimeterConfigurationReconcileResult>,
@@ -120,7 +120,7 @@ export function _listByPrivateLinkScopeSend(
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
       scopeName: scopeName,
-      "api%2Dversion": context.apiVersion ?? "2026-07-15",
+      "api%2Dversion": context.apiVersion ?? "2026-07-15-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -161,7 +161,7 @@ export function listByPrivateLinkScope(
     () => _listByPrivateLinkScopeSend(context, resourceGroupName, scopeName, options),
     _listByPrivateLinkScopeDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "nextLink", apiVersion: context.apiVersion ?? "2026-07-15" },
+    { itemName: "value", nextLinkName: "nextLink", apiVersion: context.apiVersion ?? "2026-07-15-preview" },
   );
 }
 
@@ -181,7 +181,7 @@ export function _getByPrivateLinkScopeSend(
       resourceGroupName: resourceGroupName,
       scopeName: scopeName,
       perimeterName: perimeterName,
-      "api%2Dversion": context.apiVersion ?? "2026-07-15",
+      "api%2Dversion": context.apiVersion ?? "2026-07-15-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

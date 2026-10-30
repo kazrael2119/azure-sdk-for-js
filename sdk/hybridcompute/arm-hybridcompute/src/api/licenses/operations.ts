@@ -36,7 +36,7 @@ export function _validateLicenseSend(
     "/subscriptions/{subscriptionId}/providers/Microsoft.HybridCompute/validateLicense{?api%2Dversion}",
     {
       subscriptionId: context.subscriptionId,
-      "api%2Dversion": context.apiVersion ?? "2026-07-15",
+      "api%2Dversion": context.apiVersion ?? "2026-07-15-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -74,7 +74,7 @@ export function validateLicense(
     abortSignal: options?.abortSignal,
     getInitialResponse: () => _validateLicenseSend(context, parameters, options),
     resourceLocationConfig: "location",
-    apiVersion: context.apiVersion ?? "2026-07-15",
+    apiVersion: context.apiVersion ?? "2026-07-15-preview",
   }) as PollerLike<OperationState<License>, License>;
 }
 
@@ -86,7 +86,7 @@ export function _listBySubscriptionSend(
     "/subscriptions/{subscriptionId}/providers/Microsoft.HybridCompute/licenses{?api%2Dversion}",
     {
       subscriptionId: context.subscriptionId,
-      "api%2Dversion": context.apiVersion ?? "2026-07-15",
+      "api%2Dversion": context.apiVersion ?? "2026-07-15-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -123,7 +123,7 @@ export function listBySubscription(
     () => _listBySubscriptionSend(context, options),
     _listBySubscriptionDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "nextLink", apiVersion: context.apiVersion ?? "2026-07-15" },
+    { itemName: "value", nextLinkName: "nextLink", apiVersion: context.apiVersion ?? "2026-07-15-preview" },
   );
 }
 
@@ -137,7 +137,7 @@ export function _listByResourceGroupSend(
     {
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
-      "api%2Dversion": context.apiVersion ?? "2026-07-15",
+      "api%2Dversion": context.apiVersion ?? "2026-07-15-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -175,7 +175,7 @@ export function listByResourceGroup(
     () => _listByResourceGroupSend(context, resourceGroupName, options),
     _listByResourceGroupDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "nextLink", apiVersion: context.apiVersion ?? "2026-07-15" },
+    { itemName: "value", nextLinkName: "nextLink", apiVersion: context.apiVersion ?? "2026-07-15-preview" },
   );
 }
 
@@ -191,7 +191,7 @@ export function _$deleteSend(
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
       licenseName: licenseName,
-      "api%2Dversion": context.apiVersion ?? "2026-07-15",
+      "api%2Dversion": context.apiVersion ?? "2026-07-15-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -225,7 +225,7 @@ export function $delete(
     abortSignal: options?.abortSignal,
     getInitialResponse: () => _$deleteSend(context, resourceGroupName, licenseName, options),
     resourceLocationConfig: "location",
-    apiVersion: context.apiVersion ?? "2026-07-15",
+    apiVersion: context.apiVersion ?? "2026-07-15-preview",
   }) as PollerLike<OperationState<void>, void>;
 }
 
@@ -242,7 +242,7 @@ export function _updateSend(
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
       licenseName: licenseName,
-      "api%2Dversion": context.apiVersion ?? "2026-07-15",
+      "api%2Dversion": context.apiVersion ?? "2026-07-15-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -283,7 +283,7 @@ export function update(
     getInitialResponse: () =>
       _updateSend(context, resourceGroupName, licenseName, parameters, options),
     resourceLocationConfig: "location",
-    apiVersion: context.apiVersion ?? "2026-07-15",
+    apiVersion: context.apiVersion ?? "2026-07-15-preview",
   }) as PollerLike<OperationState<License>, License>;
 }
 
@@ -300,7 +300,7 @@ export function _createOrUpdateSend(
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
       licenseName: licenseName,
-      "api%2Dversion": context.apiVersion ?? "2026-07-15",
+      "api%2Dversion": context.apiVersion ?? "2026-07-15-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -341,7 +341,7 @@ export function createOrUpdate(
     getInitialResponse: () =>
       _createOrUpdateSend(context, resourceGroupName, licenseName, parameters, options),
     resourceLocationConfig: "location",
-    apiVersion: context.apiVersion ?? "2026-07-15",
+    apiVersion: context.apiVersion ?? "2026-07-15-preview",
   }) as PollerLike<OperationState<License>, License>;
 }
 
@@ -357,7 +357,7 @@ export function _getSend(
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
       licenseName: licenseName,
-      "api%2Dversion": context.apiVersion ?? "2026-07-15",
+      "api%2Dversion": context.apiVersion ?? "2026-07-15-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

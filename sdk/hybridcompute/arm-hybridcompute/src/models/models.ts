@@ -5194,8 +5194,8 @@ export type InstanceViewTypes = string;
 
 /** The available API versions. */
 export enum KnownVersions {
-  /** The 2026-07-15 API version. */
-  V20260715 = "2026-07-15",
+  /** The 2026-07-15-preview API version. */
+  V20260715 = "2026-07-15-preview",
 }
 
 export function _licensePropertiesSerializer(item: License): any {

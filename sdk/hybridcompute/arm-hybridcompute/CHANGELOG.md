@@ -1,5 +1,16 @@
 # Release History
 
+## 6.0.0-beta.1 (2026-10-30)
+Compared with version 5.0.0
+
+### Breaking Changes
+  - Operation MachinesOperations.createOrUpdate has a new signature
+  - Operation MachinesOperations.get has a new signature
+  - Operation MachinesOperations.listByResourceGroup has a new signature
+  - Operation MachinesOperations.listBySubscription has a new signature
+  - Operation MachinesOperations.update has a new signature
+  - Type of parameter correlationId of interface AgentUpgrade is changed from string to number
+
 ## 5.0.0 (2026-07-24)
 
 ### Features Added

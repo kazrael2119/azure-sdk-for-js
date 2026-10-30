@@ -29,7 +29,7 @@ export function _setupExtensionsSend(
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
       machineName: machineName,
-      "api%2Dversion": context.apiVersion ?? "2026-07-15",
+      "api%2Dversion": context.apiVersion ?? "2026-07-15-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -72,7 +72,7 @@ export function setupExtensions(
     getInitialResponse: () =>
       _setupExtensionsSend(context, resourceGroupName, machineName, extensions, options),
     resourceLocationConfig: "location",
-    apiVersion: context.apiVersion ?? "2026-07-15",
+    apiVersion: context.apiVersion ?? "2026-07-15-preview",
   }) as PollerLike<OperationState<SetupExtensionRequest>, SetupExtensionRequest>;
 }
 
@@ -89,7 +89,7 @@ export function _upgradeExtensionsSend(
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
       machineName: machineName,
-      "api%2Dversion": context.apiVersion ?? "2026-07-15",
+      "api%2Dversion": context.apiVersion ?? "2026-07-15-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -135,6 +135,6 @@ export function upgradeExtensions(
         options,
       ),
     resourceLocationConfig: "location",
-    apiVersion: context.apiVersion ?? "2026-07-15",
+    apiVersion: context.apiVersion ?? "2026-07-15-preview",
   }) as PollerLike<OperationState<void>, void>;
 }

@@ -3191,6 +3191,6 @@ export function nameDeserializer(item: any): Name {
 
 /** The available API versions. */
 export enum KnownVersions {
-  /** The 2026-11-01-preview API version. */
-  V20261101 = "2026-11-01-preview",
+  /** The 2026-11-01 API version. */
+  V20261101 = "2026-11-01",
 }
